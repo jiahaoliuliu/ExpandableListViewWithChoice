@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
 	private static List<Country> countries;
 	private ExpandableListView expandableListView;
 	private CountryAdapter adapter;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,9 +30,13 @@ public class MainActivity extends Activity {
 		
 		expandableListView.setAdapter(adapter);
 
+		// The choice mode has been moved from list view to adapter in order
+		// to not extend the class ExpansibleListView
+		adapter.setChoiceMode(CountryAdapter.CHOICE_MODE_MULTIPLE);
+
 		// Handle the click when the user clicks an any child
 		expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-			
+
 			@Override
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
